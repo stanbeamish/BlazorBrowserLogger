@@ -1,0 +1,36 @@
+﻿@inject StyledLogger StyledLogger
+
+<h3 style="padding-top: 24px;">
+    Log Styled
+</h3>
+
+<div class="form-group">
+    <select @bind="_logLevel" class="form-select">
+        <option value="@LogLevel.Default" selected>Default</option>
+        <option value="@LogLevel.Info">Info</option>
+        <option value="@LogLevel.Warning">Warning</option>
+        <option value="@LogLevel.Error">Error</option>
+    </select>
+</div>
+<div class="form-group">
+    <span style="padding: 8px;"></span>
+    <select @bind="_style" class="form-select">
+        <option value="@Styles.Default" selected>Default</option>
+        <option value="@Styles.Nice">Nice</option>
+        <option value="@Styles.Fancy">Fancy</option>
+    </select>
+</div>
+<button class="button btn btn-secondary" @onclick="() => ShowLogStyled()">Log Styled</button>
+
+@code {
+    private LogLevel _logLevel = LogLevel.Default;
+    private Styles _style = Styles.Default;
+
+    private readonly string _writeInfo = "Please don't hesitate to get in contact with ... some Email@Address.flow";
+
+    private void ShowLogStyled()
+    {
+        StyledLogger?.LogStyled("Hello from C# | " + _writeInfo, _logLevel, _style);
+    }
+
+}

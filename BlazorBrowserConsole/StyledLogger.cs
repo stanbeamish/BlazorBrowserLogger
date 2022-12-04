@@ -17,13 +17,37 @@ public class StyledLogger : IAsyncDisposable
         var module = await _moduleTask.Value;
         await module.InvokeVoidAsync("tableLog", data);
     }
+
+    public async ValueTask GroupLog(string message, LogLevel? logLevel)
+    {
+        var module = await _moduleTask.Value;
+        var logSettings = SetLogSettings(logLevel ?? LogLevel.Default);
+        await module.InvokeVoidAsync("groupLog", message, logSettings.LogLevelString);
+    }
     
+    public async ValueTask GroupEndLog()
+    {
+        var module = await _moduleTask.Value;
+        await module.InvokeVoidAsync("groupEndLog");
+    }
+    
+    public async ValueTask ClearLog()
+    {
+        var module = await _moduleTask.Value;
+        await module.InvokeVoidAsync("clearLog");
+    }
+    
+    public async ValueTask SimpleLogStyled(string message, LogLevel? logLevel, string? style)
+    {
+        var cssStyle = style ?? string.Empty;
+        var logSettings = SetLogSettings(logLevel ?? LogLevel.Default);
+        var module = await _moduleTask.Value;
+        await module.InvokeVoidAsync("styledLog", message, logSettings.LogLevelString, cssStyle);
+    }
     
     public async ValueTask LogStyled(string message, LogLevel? logLevel, Styles? style)
     {
         style ??= Styles.Default;
-        
-        Console.WriteLine($"Called LogStyled with: {message}");
         
         var module = await _moduleTask.Value;
         var logSettings = SetLogSettings(logLevel ?? LogLevel.Default);
@@ -38,8 +62,6 @@ public class StyledLogger : IAsyncDisposable
             _ => $"color: {logSettings.ForegroundColor}; background-color: {logSettings.BackgroundColor};"
         };
         
-        Console.WriteLine($"\nSet cssStyle to: {cssStyle}");
-
         await module.InvokeVoidAsync("styledLog", message, logSettings.LogLevelString, cssStyle);
     }
     

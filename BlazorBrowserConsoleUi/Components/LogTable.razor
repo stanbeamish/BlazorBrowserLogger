@@ -1,0 +1,16 @@
+﻿@using BlazorBrowserConsoleUi.Core.Utils
+@inject StyledLogger StyledLogger
+
+<h3 style="padding-top: 24px;">
+    Log Table
+</h3>
+<button class="button btn btn-primary" @onclick="() => LogATable()">Log Table</button>
+
+@code {
+
+    private void LogATable()
+    {
+        var table = TestData.GetPeople();
+        StyledLogger?.LogTable(table);
+    }
+}

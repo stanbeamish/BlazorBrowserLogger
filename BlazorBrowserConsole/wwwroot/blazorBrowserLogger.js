@@ -2,6 +2,25 @@
     console.table(data);
 }
 
+function groupLog(data, logLevel) {
+    if (logLevel === 'log') {
+        console.group('%c' + data);
+    }
+    if (logLevel === 'info') {
+        console.group('%c' + "😌" + data);
+    }
+    if (logLevel === 'warn') {
+        console.group('%c' + "🧐️" + data);
+    }
+    if (logLevel === 'error') {
+        console.group('%c' + "😱" + data);
+    }
+}
+
+function groupEndLog() {
+    console.groupEnd();
+}
+
 function styledLog(data, logLevel, style) {
     if (logLevel === 'log') {
         console.log('%c' + data, style);
@@ -17,4 +36,8 @@ function styledLog(data, logLevel, style) {
     }
 }
 
-export { tableLog, styledLog };
+function clearLog() {
+    console.clear();
+}
+
+export { tableLog, styledLog, groupLog, groupEndLog, clearLog };
