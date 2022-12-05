@@ -2,18 +2,11 @@
     console.table(data);
 }
 
-function groupLog(data, logLevel) {
-    if (logLevel === 'log') {
-        console.group('%c' + data);
-    }
-    if (logLevel === 'info') {
-        console.group('%c' + "😌" + data);
-    }
-    if (logLevel === 'warn') {
-        console.group('%c' + "🧐️" + data);
-    }
-    if (logLevel === 'error') {
-        console.group('%c' + "😱" + data);
+function groupLog(label, collapsed) {
+    if (!collapsed) {
+        console.group(label);
+    } else {
+        console.groupCollapsed(label);
     }
 }
 
