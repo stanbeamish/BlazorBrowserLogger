@@ -10,4 +10,4 @@ A Razor component library the offers a btter logging to the Browser console
 
 A Blazor WASM standalone project, that allows you to test the logging to the Browser console.
 
-See the [Running Applicaiton](https://stanbeamish.github.io/BlazorBrowserLogger/)
+See the <a href="https://stanbeamish.github.io/BlazorBrowserLogger/" target="_blank">Running App hosted on Github Pages</a>
