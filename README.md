@@ -1,10 +1,27 @@
-# BlazorBrowserLogger
+# BlazorBrowserLogger (WIP)
 
 This solution contains two projects.
 
 ## BlazorBrowserConsole
 
-A Razor component library the offers a btter logging to the Browser console
+A Razor component library that offers a better logging to the Browser console
+
+### Supported function
+
+- LogStyled(string message, LogLevel logLevel, Styles style)
+- SimpleLogStyled(string message, LogLevel loglevel, string style)
+- LogTable(object data)
+
+### Available Styles
+- Default
+- Nice
+- Fancy
+
+### Available LogLevels
+- Default -> console.log
+- Info -> console.info
+- Warning -> console.warning
+- Error -> console.error
 
 ## BlazorBrowserConsoleUi
 
