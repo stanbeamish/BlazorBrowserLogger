@@ -18,11 +18,10 @@ public class StyledLogger : IAsyncDisposable
         await module.InvokeVoidAsync("tableLog", data);
     }
 
-    public async ValueTask GroupLog(string message, LogLevel? logLevel)
+    public async ValueTask GroupLog(string label, bool collapsed)
     {
         var module = await _moduleTask.Value;
-        var logSettings = SetLogSettings(logLevel ?? LogLevel.Default);
-        await module.InvokeVoidAsync("groupLog", message, logSettings.LogLevelString);
+        await module.InvokeVoidAsync("groupLog", label, collapsed);
     }
     
     public async ValueTask GroupEndLog()

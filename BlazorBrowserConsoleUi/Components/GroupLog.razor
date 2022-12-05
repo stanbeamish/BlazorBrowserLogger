@@ -1,0 +1,32 @@
+﻿@inject StyledLogger StyledLogger
+<h3 style="padding-top: 24px;">
+    Log in Group
+</h3>
+
+<button class="button btn btn-primary" @onclick="() => CreateCollapsedGroupLog()">Collapsed Group Log</button>
+<button class="button btn btn-primary" @onclick="() => CreateExpandedGroupLog()">Expanded Group Log</button>
+
+@code {
+
+    private void CreateExpandedGroupLog()
+    {
+        StyledLogger?.GroupLog("EXPANDED GROUP", false);
+        StyledLogger?.LogStyled("Some Entry", LogLevel.Info, Styles.Nice);
+        StyledLogger?.LogStyled("More Entry", LogLevel.Warning, Styles.Nice);
+        StyledLogger?.GroupEndLog();
+    }
+
+    private void CreateCollapsedGroupLog()
+    {
+        var table = TestData.GetPeople();
+        
+        StyledLogger?.GroupLog("COLLAPSED GROUP", true);
+        StyledLogger?.LogStyled("First Entry", LogLevel.Info, Styles.Nice);
+        StyledLogger?.LogStyled("Second Entry", LogLevel.Default, Styles.Default);
+        StyledLogger?.LogStyled("Third Entry", LogLevel.Error, Styles.Fancy);
+        StyledLogger?.LogTable(table);
+        StyledLogger?.LogStyled("Last Entry", LogLevel.Default, Styles.Default);
+        StyledLogger?.GroupEndLog();
+    }
+
+}
